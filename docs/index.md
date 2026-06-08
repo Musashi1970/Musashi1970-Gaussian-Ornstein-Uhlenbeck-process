@@ -9,7 +9,7 @@ stochastic processes.
 The Ornstein-Uhlenbeck process is defined by the following stochastic
 differential equation (SDE):
 
-$$dx_t = \theta (\mu - x_t)\,dt + \sigma\,dW_t$$  ← correct
+$$dx_t = \theta (\mu - x_t)\,dt + \sigma\,dW_t$$ 
 
 
 Where:
