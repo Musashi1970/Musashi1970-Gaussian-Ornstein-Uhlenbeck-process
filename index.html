@@ -1,0 +1,1208 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Gaussian Ornstein-Uhlenbeck Process</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gaussian-ornstein-uhlenbeck-process" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Gaussian Ornstein-Uhlenbeck Process" class="md-header__button md-logo" aria-label="Gaussian Ornstein-Uhlenbeck Process" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Gaussian Ornstein-Uhlenbeck Process
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Gaussian Ornstein-Uhlenbeck Process
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Gaussian Ornstein-Uhlenbeck Process" class="md-nav__button md-logo" aria-label="Gaussian Ornstein-Uhlenbeck Process" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Gaussian Ornstein-Uhlenbeck Process
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gaussian Ornstein-Uhlenbeck Process
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gaussian Ornstein-Uhlenbeck Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mathematical-formulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mathematical Formulation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mathematical Formulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-ornstein-uhlenbeck-sde" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Ornstein-Uhlenbeck SDE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exact-discrete-transition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exact Discrete Transition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameter-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameter Estimation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameter Estimation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ols-on-the-discretised-ar1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OLS on the Discretised AR(1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calibrated-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Calibrated Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monte-carlo-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monte Carlo Simulation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Failure Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cap-hit-frequency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cap-Hit Frequency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boundary-violations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boundary Violations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diurnal-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diurnal Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statistical-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Statistical Validation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Statistical Validation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future Extensions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Future Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-levy-driven-ou-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Lévy-Driven OU Process
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-seasonal-mean-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Seasonal Mean Function
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-two-factor-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Two-Factor Decomposition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mathematical-formulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mathematical Formulation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mathematical Formulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-ornstein-uhlenbeck-sde" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Ornstein-Uhlenbeck SDE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exact-discrete-transition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exact Discrete Transition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameter-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameter Estimation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameter Estimation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ols-on-the-discretised-ar1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OLS on the Discretised AR(1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calibrated-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Calibrated Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monte-carlo-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monte Carlo Simulation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Failure Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cap-hit-frequency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cap-Hit Frequency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boundary-violations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boundary Violations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diurnal-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diurnal Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statistical-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Statistical Validation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Statistical Validation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future Extensions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Future Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-levy-driven-ou-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Lévy-Driven OU Process
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-seasonal-mean-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Seasonal Mean Function
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-two-factor-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Two-Factor Decomposition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="gaussian-ornstein-uhlenbeck-process">Gaussian Ornstein-Uhlenbeck Process</h1>
+<p>Welcome to the documentation for the <strong>IEX DAM stochastic price modelling project</strong>.
+This project calibrates a Gaussian Ornstein-Uhlenbeck (OU) process to real 15-minute
+Market Clearing Price (MCP) data from the Indian Energy Exchange Day-Ahead Market,
+simulates 200 Monte Carlo paths, and rigorously stress-tests the Gaussian assumption —
+building the quantitative case for why non-Gaussian extensions are necessary.</p>
+<hr />
+<h2 id="dataset">Dataset</h2>
+<p>Data sourced from the <strong>Indian Energy Exchange (IEX) Day-Ahead Market Snapshot</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Period</td>
+<td>7 May 2026 – 6 June 2026 (31 days)</td>
+</tr>
+<tr>
+<td>Granularity</td>
+<td>15-minute intervals (96 time blocks/day)</td>
+</tr>
+<tr>
+<td>Observations</td>
+<td>2,976 (after cleaning)</td>
+</tr>
+<tr>
+<td>Target variable</td>
+<td>MCP (Rs/MWh) — Market Clearing Price</td>
+</tr>
+<tr>
+<td>Price range</td>
+<td>₹20.81 – ₹10,000.00 (regulatory cap)</td>
+</tr>
+<tr>
+<td>Mean MCP</td>
+<td>₹5,292.27/MWh</td>
+</tr>
+<tr>
+<td>Median MCP</td>
+<td>₹3,956.71/MWh</td>
+</tr>
+</tbody>
+</table>
+<p>The large gap between mean and median (≈₹1,335) immediately signals a skewed,
+non-symmetric distribution — the first hint that a Gaussian model will struggle.</p>
+<hr />
+<h2 id="mathematical-formulation">Mathematical Formulation</h2>
+<h3 id="the-ornstein-uhlenbeck-sde">The Ornstein-Uhlenbeck SDE</h3>
+<p>The OU process is the continuous-time analogue of a stationary AR(1) process,
+defined by the stochastic differential equation:</p>
+<div class="arithmatex">\[dX_t = \theta(\mu - X_t)\,dt + \sigma\,dW_t\]</div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Symbol</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mean-reversion speed</td>
+<td><span class="arithmatex">\(\theta\)</span></td>
+<td>Rate at which prices pull back toward <span class="arithmatex">\(\mu\)</span></td>
+</tr>
+<tr>
+<td>Long-run mean</td>
+<td><span class="arithmatex">\(\mu\)</span></td>
+<td>Equilibrium price level</td>
+</tr>
+<tr>
+<td>Volatility</td>
+<td><span class="arithmatex">\(\sigma\)</span></td>
+<td>Diffusion coefficient</td>
+</tr>
+<tr>
+<td>Wiener process</td>
+<td><span class="arithmatex">\(W_t\)</span></td>
+<td>Standard Brownian motion driver</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>half-life</strong> of a price shock — the time for half the deviation from <span class="arithmatex">\(\mu\)</span> to
+dissipate — is given by:</p>
+<div class="arithmatex">\[t_{1/2} = \frac{\ln 2}{\theta}\]</div>
+<h3 id="exact-discrete-transition">Exact Discrete Transition</h3>
+<p>For a time step <span class="arithmatex">\(\Delta t = 0.25\)</span> hours (15 minutes), the exact solution of the SDE gives:</p>
+<div class="arithmatex">\[X_{t+1} = X_t\,e^{-\theta\Delta t} + \mu\left(1 - e^{-\theta\Delta t}\right) + \sigma\sqrt{\frac{1 - e^{-2\theta\Delta t}}{2\theta}}\cdot Z_t\]</div>
+<p>where <span class="arithmatex">\(Z_t \sim \mathcal{N}(0,1)\)</span> is an i.i.d. standard normal innovation.</p>
+<hr />
+<h2 id="parameter-estimation">Parameter Estimation</h2>
+<h3 id="ols-on-the-discretised-ar1">OLS on the Discretised AR(1)</h3>
+<p>The discrete transition is linear in <span class="arithmatex">\(X_t\)</span>, so the OU parameters are recovered
+by regressing <span class="arithmatex">\(X_{t+1}\)</span> on <span class="arithmatex">\(X_t\)</span>:</p>
+<div class="arithmatex">\[X_{t+1} = \beta\cdot X_t + \alpha + \varepsilon_t\]</div>
+<p>The continuous-time parameters are then recovered as:</p>
+<div class="arithmatex">\[\theta = -\frac{\ln\beta}{\Delta t}, \qquad \mu = \frac{\alpha}{1-\beta}, \qquad \sigma = \text{RSE}\cdot\sqrt{\frac{2\theta}{1 - e^{-2\theta\Delta t}}}\]</div>
+<p>where RSE is the residual standard error of the regression.</p>
+<h3 id="calibrated-parameters">Calibrated Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\theta\)</span></td>
+<td>0.0632 hr⁻¹</td>
+<td>Half-life of price shock: <strong>10.97 hours</strong></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mu\)</span></td>
+<td>₹5,408.71/MWh</td>
+<td>Equilibrium (long-run mean) price</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\sigma\)</span></td>
+<td>₹1,284.88/MWh</td>
+<td>Diffusion coefficient</td>
+</tr>
+<tr>
+<td>R²</td>
+<td>0.9957</td>
+<td>Near-unit-root AR(1) — strong persistence</td>
+</tr>
+</tbody>
+</table>
+<p>The R² of 0.9957 confirms that electricity prices are highly autocorrelated at
+the 15-minute timescale. The slow mean-reversion speed (<span class="arithmatex">\(\theta = 0.063\)</span>) implies
+shocks take nearly 11 hours to halve in magnitude — consistent with the diurnal
+price cycles visible in the data.</p>
+<hr />
+<h2 id="monte-carlo-simulation">Monte Carlo Simulation</h2>
+<p>200 independent price paths are generated using the exact discrete OU transition,
+each with 2,976 steps starting from the first observed price <span class="arithmatex">\(X_0 = ₹4,499.07\)</span>.</p>
+<p>The simulation immediately reveals three structural failures of the Gaussian model:</p>
+<ol>
+<li><strong>No price floor</strong> — paths routinely go negative (actual prices are bounded at ₹0)</li>
+<li><strong>No price cap</strong> — paths overshoot ₹10,000 freely (actual cap at ₹10,000/MWh)</li>
+<li><strong>No diurnal structure</strong> — simulated hourly averages are flat; actual prices follow
+   a pronounced duck-curve pattern peaking around midnight and troughing at noon</li>
+</ol>
+<p><img alt="OU Failure Analysis — 5-panel diagnostic" src="ou_failure_analysis.png" />
+<em>Figure 1: (1) First 3 days of actual vs 200 simulated paths. (2) Pooled simulated density vs actual — Gaussian OU spreads symmetrically while actual prices cluster at the cap. (3) Hourly average comparison showing the duck-curve gap. (4) Simulated cap-hit distribution vs actual 976 hits. (5) Path minimum/maximum boxplots showing negative price generation and cap overshoots.</em></p>
+<hr />
+<h2 id="failure-analysis">Failure Analysis</h2>
+<h3 id="cap-hit-frequency">Cap-Hit Frequency</h3>
+<p>The actual data contains <strong>976 observations at the ₹10,000 cap</strong> (32.8% of all
+time blocks). Simulated paths average only <strong>~300 cap hits</strong> per path — less than
+a third of the actual frequency. This underlines that the price-cap clustering is
+driven by a structural feature (supply scarcity spikes) that a diffusion model
+cannot replicate.</p>
+<h3 id="boundary-violations">Boundary Violations</h3>
+<table>
+<thead>
+<tr>
+<th>Boundary</th>
+<th>Actual behaviour</th>
+<th>Gaussian OU behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lower bound</td>
+<td>Always ≥ ₹0.00 (physical)</td>
+<td>Generates negative prices</td>
+</tr>
+<tr>
+<td>Upper bound</td>
+<td>Hard cap at ₹10,000</td>
+<td>No ceiling; paths reach ₹20,000+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="diurnal-pattern">Diurnal Pattern</h3>
+<p>The actual hourly average profile shows a clear <strong>duck curve</strong>: prices peak above
+₹9,000/MWh in the late evening (hours 18–23), drop to roughly ₹1,500/MWh during
+mid-day solar surplus hours (hours 9–14), and rise sharply again after sunset.
+The Gaussian OU mean path is flat at approximately ₹5,400/MWh across all hours —
+it has no mechanism for time-of-day structure.</p>
+<hr />
+<h2 id="statistical-validation">Statistical Validation</h2>
+<p>Three complementary tests are used to assess the Gaussian assumption.</p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Purpose</th>
+<th>Null hypothesis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jarque-Bera</td>
+<td>Normality via skewness + kurtosis</td>
+<td>Data is normally distributed</td>
+</tr>
+<tr>
+<td>Kolmogorov-Smirnov (two-sample)</td>
+<td>Distributional equivalence</td>
+<td>Actual and simulated come from the same distribution</td>
+</tr>
+<tr>
+<td>Kolmogorov-Smirnov (one-sample)</td>
+<td>Goodness-of-fit to Normal</td>
+<td>Actual data follows a fitted Normal</td>
+</tr>
+<tr>
+<td>Anderson-Darling</td>
+<td>Tail-sensitive normality</td>
+<td>Data is normally distributed (emphasises tails)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="results">Results</h3>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Statistic</th>
+<th>p-value</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jarque-Bera (actual)</td>
+<td>JB = 357.18, Skew = +0.342, Ex. Kurt = −1.553</td>
+<td>2.76 × 10⁻⁷⁸</td>
+<td>Normality <strong>rejected</strong></td>
+</tr>
+<tr>
+<td>Jarque-Bera (simulated)</td>
+<td>JB = 23.5</td>
+<td>8.03 × 10⁻⁶</td>
+<td>Normality <strong>rejected</strong></td>
+</tr>
+<tr>
+<td>KS two-sample</td>
+<td>D = 0.5786</td>
+<td>≈ 0</td>
+<td>Same distribution <strong>rejected</strong></td>
+</tr>
+<tr>
+<td>KS one-sample</td>
+<td>D = 0.2341</td>
+<td>5.74 × 10⁻¹⁴⁴</td>
+<td>Normality <strong>rejected</strong></td>
+</tr>
+<tr>
+<td>Anderson-Darling (actual)</td>
+<td>A² = 221.18 vs critical 1.035 (1%)</td>
+<td>—</td>
+<td>Exceeds critical value by <strong>213×</strong></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Statistical Tests Panel" src="statistical_tests_panel.png" />
+<em>Figure 2: (Left) Jarque-Bera — standardised histograms of actual and simulated prices against the fitted Normal curve. (Centre) KS test — empirical CDFs with the maximum deviation D = 0.5786 marked at ≈₹4,500/MWh. (Right) Anderson-Darling — test statistic vs critical values at all five significance levels; actual A² = 221.18 is off the chart.</em></p>
+<h3 id="interpretation">Interpretation</h3>
+<p><strong>Jarque-Bera</strong>: The excess kurtosis of −1.553 indicates a <em>platykurtic</em> (flat-topped)
+distribution — not the light-tailed bell curve a Gaussian OU produces. The positive
+skew (+0.342) reflects the price-cap cluster pulling the right tail.</p>
+<p><strong>KS two-sample</strong>: The maximum CDF divergence of D = 0.5786 occurs near ₹4,500/MWh —
+the transition between solar-surplus midday hours and thermal dispatch hours.
+At this price level, the actual and simulated cumulative probabilities diverge by
+<strong>57.9 percentage points</strong>.</p>
+<p><strong>Anderson-Darling</strong>: A² = 221.18 is 213 times above the most stringent critical
+value (1.035 at the 1% significance level). This statistic is tail-sensitive by
+design, confirming the catastrophic mismatch in extreme-price behaviour.</p>
+<hr />
+<h2 id="conclusions">Conclusions</h2>
+<p>The Gaussian OU process captures the dominant feature of electricity prices —
+<strong>mean reversion</strong> — but fails to reproduce the structural features that make
+electricity markets unique:</p>
+<ul>
+<li>Heavy-tailed, bimodal price distribution driven by regulatory caps and solar
+  intermittency</li>
+<li>Hard physical bounds (₹0 floor, ₹10,000 cap) that a Gaussian diffusion ignores</li>
+<li>Strong intra-day seasonality (duck curve) requiring a time-varying mean function</li>
+<li>Frequent price spikes caused by supply-demand imbalances that demand jump components</li>
+</ul>
+<blockquote>
+<p>A Gaussian OU model is a useful <strong>calibration baseline</strong> but is insufficient for
+pricing, risk management, or forecasting in Indian electricity markets.</p>
+</blockquote>
+<hr />
+<h2 id="future-extensions">Future Extensions</h2>
+<h3 id="1-levy-driven-ou-process">1. Lévy-Driven OU Process</h3>
+<p>Replace the Gaussian innovations <span class="arithmatex">\(Z_t \sim \mathcal{N}(0,1)\)</span> with a <strong>Normal Inverse
+Gaussian (NIG)</strong> or <strong>jump-diffusion</strong> driver:</p>
+<div class="arithmatex">\[dX_t = \theta(\mu - X_t)\,dt + \sigma\,dL_t\]</div>
+<p>where <span class="arithmatex">\(L_t\)</span> is a Lévy process. This naturally reproduces heavy tails and spike
+behaviour without requiring a separate jump component.</p>
+<h3 id="2-seasonal-mean-function">2. Seasonal Mean Function</h3>
+<p>Introduce a deterministic time-varying mean <span class="arithmatex">\(\mu(t)\)</span> capturing the diurnal duck curve:</p>
+<div class="arithmatex">\[dX_t = \theta(\mu(t) - X_t)\,dt + \sigma\,dW_t\]</div>
+<p><span class="arithmatex">\(\mu(t)\)</span> can be estimated as the empirical average MCP at each of the 96 daily
+time blocks, effectively separating the seasonal signal from the stochastic residual.</p>
+<h3 id="3-two-factor-decomposition">3. Two-Factor Decomposition</h3>
+<p>Decompose the log-price into a <strong>base signal</strong> (slow mean-reverting OU) and a
+<strong>spike component</strong> (fast-decaying jump process):</p>
+<div class="arithmatex">\[\ln P_t = f(t) + X_t^{\text{base}} + X_t^{\text{spike}}\]</div>
+<p>This is the approach advocated by Benth, Šaltytė Benth &amp; Koekebakker (2008) for
+Nordic power markets, and is directly applicable to IEX DAM data.</p>
+<hr />
+<h2 id="references">References</h2>
+<ol>
+<li>Benth, F. E., Šaltytė Benth, J., &amp; Koekebakker, S. (2008). <em>Stochastic Modelling
+   of Electricity and Related Markets</em>. World Scientific.</li>
+<li>Shreve, S. E. (2004). <em>Stochastic Calculus for Finance II: Continuous-Time Models</em>.
+   Springer.</li>
+<li>Stoft, S. (2002). <em>Power System Economics</em>. IEEE Press / Wiley-Interscience.</li>
+<li>QuantStart (2024). <em>Ornstein-Uhlenbeck Process Simulation with Python</em>.
+   <a href="https://www.quantstart.com/articles/ornstein-uhlenbeck-simulation-with-python/">quantstart.com</a></li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": [], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
