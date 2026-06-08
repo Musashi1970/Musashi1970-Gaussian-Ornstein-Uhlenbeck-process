@@ -101,6 +101,9 @@ The simulation immediately reveals three structural failures of the Gaussian mod
 3. **No diurnal structure** — simulated hourly averages are flat; actual prices follow
    a pronounced duck-curve pattern peaking around midnight and troughing at noon
 
+![OU Failure Analysis — 5-panel diagnostic](ou_failure_analysis.png)
+*Figure 1: (1) First 3 days of actual vs 200 simulated paths. (2) Pooled simulated density vs actual — Gaussian OU spreads symmetrically while actual prices cluster at the cap. (3) Hourly average comparison showing the duck-curve gap. (4) Simulated cap-hit distribution vs actual 976 hits. (5) Path minimum/maximum boxplots showing negative price generation and cap overshoots.*
+
 ---
 
 ## Failure Analysis
@@ -150,6 +153,9 @@ Three complementary tests are used to assess the Gaussian assumption.
 | KS two-sample | D = 0.5786 | ≈ 0 | Same distribution **rejected** |
 | KS one-sample | D = 0.2341 | 5.74 × 10⁻¹⁴⁴ | Normality **rejected** |
 | Anderson-Darling (actual) | A² = 221.18 vs critical 1.035 (1%) | — | Exceeds critical value by **213×** |
+
+![Statistical Tests Panel](statistical_tests_panel.png)
+*Figure 2: (Left) Jarque-Bera — standardised histograms of actual and simulated prices against the fitted Normal curve. (Centre) KS test — empirical CDFs with the maximum deviation D = 0.5786 marked at ≈₹4,500/MWh. (Right) Anderson-Darling — test statistic vs critical values at all five significance levels; actual A² = 221.18 is off the chart.*
 
 ### Interpretation
 
